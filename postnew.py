@@ -5,8 +5,8 @@ import requests
 global ser
 ser = serial.Serial('/dev/ttyS0',9600)
 
-device_id = "DWSCVjnQ"
-device_key = "060QmR5kutfJvp5s"
+device_id = "DEVICE ID"
+device_key = "D"
 
 
 url = "http://api.mediatek.com/mcs/v2/devices/" + device_id

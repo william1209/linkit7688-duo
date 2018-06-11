@@ -1,0 +1,65 @@
+#include "DHT.h"
+
+
+#define DHTPIN A1
+#define DHTTYPE DHT22 
+
+DHT dht(DHTPIN, DHTTYPE);
+
+
+int ledpin=13;
+int gaspin=A0;
+
+void setup() {  
+  Serial.begin(9600);
+  Serial1.begin(9600);
+  pinMode(ledpin,OUTPUT);
+  dht.begin();
+  
+}
+
+void sense(){
+
+  float t = dht.readTemperature();
+  Serial.println(t);
+  Serial1.print('a');
+  Serial1.print(String(t).length());
+  Serial1.print(t);
+
+  float h = dht.readHumidity();
+  Serial.println(h);
+  Serial1.print('b');
+  Serial1.print(String(h).length());
+  Serial1.print(h);
+
+  float hi = dht.computeHeatIndex(t,h);
+  Serial.println(hi);
+  Serial1.print('c');
+  Serial1.print(String(hi).length());
+  Serial1.print(hi);
+ 
+
+
+  float gas = analogRead(gaspin);
+  Serial1.print('d');
+  Serial1.print(String(gas).length());
+  Serial1.print(gas);
+  Serial.println(gas);  
+
+  delay(250);
+}
+
+
+void loop() {  
+
+  sense();
+
+  char c = Serial1.read() ;
+   //Serial1.print(c);
+   //Serial.print(c);
+   if (c=='0')
+    digitalWrite(ledpin,LOW);
+   if (c=='1')
+    digitalWrite(ledpin,HIGH); 
+  
+}

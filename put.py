@@ -4,9 +4,9 @@ import time
 
 #ser = serial.Serial('/dev/ttyS0',57600)
 ser = None
-device_id = "Do6kc6wx"
+device_id = "DEVICE ID"
 
-device_key = "ZIgutl867FI35vSE"
+device_key = "DEVICE KEY"
 data_channel = "led"
 data_channel +=",,"
 
